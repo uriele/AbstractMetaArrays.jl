@@ -1,4 +1,4 @@
-# AbstactMetaArrays
+# AbstractMetaArrays
 
 [![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://marcom.github.io/AbstactMetaArrays.jl/stable/)
 [![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://marcom.github.io/AbstactMetaArrays.jl/dev/)
