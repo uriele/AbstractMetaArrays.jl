@@ -17,7 +17,7 @@ function DataAPI.metadatakeys(ma::MA) where MA<:AbstractMetaArray
   return keys(meta)
 end
 
-DataAPI.metadata(ma::MA; style::Bool=false) where MA<:AbstractMetaArray= Dict(map(key-> key=>metadata(ma, key; style=style), metadatakeys(ma)))
+DataAPI.metadata(ma::MA; style::Bool=false) where MA<:AbstractMetaArray= Dict(metadatakeys(ma) .=> [metadata(ma, key; style=style) for key in metadatakeys(ma)])
 
 function DataAPI.metadata!(ma::MA, key::AbstractString, value; style::Symbol=:default) where MA<:AbstractMetaArray
   ma._metadata[key] = (value,style)
@@ -59,8 +59,7 @@ function DataAPI.colmetadata(ma::MA, col::Symbol, key::AbstractString, default=M
   meta=colmeta[col]
   _metadata_info(meta,key,default,style,col)
 end
-DataAPI.colmetadata(ma::MA, col::Symbol; style::Bool=false) where MA<:AbstractMetaArray = Dict(map(key-> key=>colmetadata(ma, col, key; style=style), colmetadatakeys(ma,col)))
-DataAPI.colmetadata!(ma::MA; style::Bool=false) where MA<:AbstractMetaArray = Dict(map(col-> col=>colmetadata(ma, col; style=style), keys(ma._colmetadata)))
+DataAPI.colmetadata(ma::MA, col::Symbol; style::Bool=false) where MA<:AbstractMetaArray =  Dict(colmetadatakeys(ma,col) .=> [colmetadata(ma, col,key; style=style) for key in colmetadatakeys(ma,col)])
 
 function DataAPI.colmetadata!(ma::MA, col::Symbol, key::AbstractString, value; style::Symbol=:default) where MA<:AbstractMetaArray
   ColMetadataTrait(MA)==NoColMetadata() && throw(ArgumentError("Column metadata not supported for type $MA."))

@@ -1,16 +1,17 @@
 
-@inline _metacomponent(m::MA, key) where MA<:AbstractMetaArray = getfield(m._data,key)
-@inline _convert_dictkey_to_string(d::Dict{<:AbstractString,Tuple{<:Any,Symbol}}) = d
-
-
-@inline function _convert_dictkey_to_string(d::Dict{S,V}) where {S<:AbstractString,V}
-  dout=Dict{S,Tuple{V,Symbol}}()
-  for (key,val) in d
-    dout[string(key)]=(val,:default)
-  end
-  return dout
+function _metacomponent(m::A, key) where A<:AbstractArray{T,N} where {T,N}
+   @info "A: $A  and base"
+   getfield(m,key)
 end
-@inline _convert_dictkey_to_string(d::Dict{K,V}) where {K,V} = _convert_dictkey_to_string(Dict(string.(keys(d)) .=> (values(d))))
+const StyleEntry=Tuple{<:Any,Symbol}
+
+@inline _convert_dictkey_to_string(d::Dict{S,K}) where {S<:AbstractString,K<:StyleEntry} = Dict{S,Tuple{Any,Symbol}}(d)
+@inline function _convert_dictkey_to_string(d::Dict{S,K}) where {S<:AbstractString,K}
+  return _convert_dictkey_to_string(Dict(keys(d) .=> tuple.( values(d), :default)))
+end
+@inline function _convert_dictkey_to_string(d::Dict{S,K}) where {S,K}
+  return _convert_dictkey_to_string(Dict(string.(keys(d)).=>values(d)))
+end
 @inline _convert_dictkey_to_string(::Nothing) = _convert_dictkey_to_string(Dict{String,Tuple{Any,Symbol}}())
 
 
@@ -27,31 +28,46 @@ end
 end
 
 
-@inline create_colmeta(::NTuple{N,Symbol},col_meta:: Dict{Symbol,<:MetaType}) where N= col_meta
-@inline function create_colmeta(S::NTuple{N,Symbol},colmeta::NTuple{N,<:MetaType})  where N
+
+@inline __create_colmeta(cd::Dict{S,K}) where {S<:Symbol,K<:MetaType} = cd
+
+@inline __create_colmeta(S::NTuple{N,Symbol},colmeta:: NM) where {N,NM<:NTuple{N,M}} where {M<:MetaType} = __create_colmeta(Dict(S .=> colmeta))
+
+@inline function __create_colmeta(S::NTuple{N,Symbol},colmeta::Tuple)  where {N}
+  @info "length(S) = $(length(S))"
+  @info "length(colmeta) = $(length(colmeta))"
+  @assert length(S) == length(colmeta) "length of colmeta must be equal to length of S"
+
+  colmeta = map(x-> _convert_dictkey_to_string(x), colmeta)
   isempty(S) ? Dict{Symbol,MetaType}() :
-  create_colmeta(S,Dict{Symbol,MetaType}(S .=> colmeta))
+  __create_colmeta(Dict(S .=> colmeta))
 end
 
-@inline function create_colmeta(S::NTuple{N,Symbol},colmeta::DictOrNothing)  where N
+@inline function __create_colmeta(S::NTuple{N,Symbol},colmeta::D)  where {N,D<:DictOrNothing}
   colmeta= _convert_dictkey_to_string(colmeta)
   isempty(S) ? Dict{Symbol,MetaType}() :
-  create_colmeta(S, ntuple(_-> colmeta, N))
+  __create_colmeta(Dict(S .=> ntuple(_-> copy(colmeta), N)))
 end
 
 
 
-@inline function create_colmeta(::Type{T}, colmeta::C) where {C,T}
+@inline function _create_colmeta(::Type{T}, colmeta::C) where {C,T}
   S= fieldnames(T)
+  @info "fieldnames(T) = $S"
   isempty(S) ? Dict{Symbol,MetaType}() :
-  create_colmeta(S, colmeta)
+  __create_colmeta(S, colmeta)
 end
 
 
-@inline function create_colmeta(x::T, colmeta::C) where {T,C}
+@inline function _create_colmeta(x::T, colmeta::C) where {T,C}
   S= propertynames(x)
+  @info "propertynames(x) = $S"
+
+  @info S isa NTuple{1,Symbol}
+  @info colmeta isa DictOrNothing
+  @info colmeta isa MetaType
   isempty(S) ? Dict{Symbol,MetaType}() :
-  create_colmeta(S, colmeta)
+  __create_colmeta(S, colmeta)
 end
 
 
@@ -71,7 +87,7 @@ function create_metaarray(trait::C, S,
   if  trait == NoColMetadata()
     return (_meta,)
   else
-    _colmeta = create_colmeta(S, default_colmeta)
+    _colmeta = _create_colmeta(S, default_colmeta)
     return (_meta,_colmeta)
   end
 end

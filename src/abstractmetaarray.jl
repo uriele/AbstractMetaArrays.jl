@@ -37,11 +37,11 @@ end
 
 
 
-function Base.getproperty(m::MA, key::Symbol) where MA<:AbstractMetaArray
+function Base.getproperty(m::MA, key::Symbol) where MA<:AbstractMetaArray{T,N,A} where {T,N,A<:AbstractArray}
   if key == :_data || key == :_metadata || (key == :_colmetadata)
     return getfield(m, key)
  else
-    return _metacomponent(m, key)
+    return _metacomponent(m._data, key)
   end
 end
 
