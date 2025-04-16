@@ -4,6 +4,7 @@ Changelog
 ### Documentation
 
 - documentation strings
+- add README.md
 
 ### Features
 
@@ -16,6 +17,7 @@ Changelog
 
 ### Testing
 
+- test
 - Include comprehensive tests
 
 
