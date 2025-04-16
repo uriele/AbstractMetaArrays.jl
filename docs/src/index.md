@@ -4,7 +4,7 @@ CurrentModule = AbstractMetaArrays
 
 # AbstractMetaArrays
 
-Documentation for [AbstractMetaArrays](https://github.com/marcom/AbstractMetaArrays.jl).
+Documentation for [AbstractMetaArrays](https://github.com/uriele/AbstractMetaArrays.jl).
 
 ```@index
 ```

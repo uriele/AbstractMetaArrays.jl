@@ -14,11 +14,11 @@ makedocs(;
     authors = "uriele <menarini.marco@gmail.com> and contributors",
     sitename = "AbstractMetaArrays.jl",
     format = Documenter.HTML(;
-        canonical = "https://marcom.github.io/AbstractMetaArrays.jl",
+        canonical = "https://uriele.github.io/AbstractMetaArrays.jl",
         edit_link = "master",
         assets = String[]
     ),
     pages = ["Home" => "index.md"]
 )
 
-deploydocs(; repo = "github.com/marcom/AbstractMetaArrays.jl", devbranch = "master")
+deploydocs(; repo = "github.com/uriele/AbstractMetaArrays.jl", devbranch = "master")
