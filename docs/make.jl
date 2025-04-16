@@ -1,23 +1,23 @@
-using AbstactMetaArrays
+using AbstractMetaArrays
 using Documenter
 
 DocMeta.setdocmeta!(
-    AbstactMetaArrays,
+    AbstractMetaArrays,
     :DocTestSetup,
-    :(using AbstactMetaArrays);
+    :(using AbstractMetaArrays);
     recursive = true
 )
 
 makedocs(;
-    modules = [AbstactMetaArrays],
+    modules = [AbstractMetaArrays],
     authors = "uriele <menarini.marco@gmail.com> and contributors",
-    sitename = "AbstactMetaArrays.jl",
+    sitename = "AbstractMetaArrays.jl",
     format = Documenter.HTML(;
-        canonical = "https://marcom.github.io/AbstactMetaArrays.jl",
+        canonical = "https://marcom.github.io/AbstractMetaArrays.jl",
         edit_link = "master",
         assets = String[]
     ),
     pages = ["Home" => "index.md"]
 )
 
-deploydocs(; repo = "github.com/marcom/AbstactMetaArrays.jl", devbranch = "master")
+deploydocs(; repo = "github.com/marcom/AbstractMetaArrays.jl", devbranch = "master")

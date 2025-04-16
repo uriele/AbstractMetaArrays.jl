@@ -66,6 +66,6 @@ jobs:
         shell: julia --project=docs --color=yes {0}
         run: |
           using Documenter: DocMeta, doctest
-          using AbstactMetaArrays
-          DocMeta.setdocmeta!(AbstactMetaArrays, :DocTestSetup, :(using AbstactMetaArrays); recursive=true)
-          doctest(AbstactMetaArrays)
+          using AbstractMetaArrays
+          DocMeta.setdocmeta!(AbstractMetaArrays, :DocTestSetup, :(using AbstractMetaArrays); recursive=true)
+          doctest(AbstractMetaArrays)

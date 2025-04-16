@@ -1,14 +1,14 @@
 ```@meta
-CurrentModule = AbstactMetaArrays
+CurrentModule = AbstractMetaArrays
 ```
 
-# AbstactMetaArrays
+# AbstractMetaArrays
 
-Documentation for [AbstactMetaArrays](https://github.com/marcom/AbstactMetaArrays.jl).
+Documentation for [AbstractMetaArrays](https://github.com/marcom/AbstractMetaArrays.jl).
 
 ```@index
 ```
 
 ```@autodocs
-Modules = [AbstactMetaArrays]
+Modules = [AbstractMetaArrays]
 ```

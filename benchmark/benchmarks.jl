@@ -1,4 +1,4 @@
-using AbstactMetaArrays
+using AbstractMetaArrays
 using BenchmarkTools
 
 SUITE = BenchmarkGroup()

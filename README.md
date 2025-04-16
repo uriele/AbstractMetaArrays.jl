@@ -1,8 +1,8 @@
 # AbstractMetaArrays
 
-[![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://marcom.github.io/AbstactMetaArrays.jl/stable/)
-[![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://marcom.github.io/AbstactMetaArrays.jl/dev/)
-[![Build Status](https://github.com/marcom/AbstactMetaArrays.jl/actions/workflows/CI.yml/badge.svg?branch=master)](https://github.com/marcom/AbstactMetaArrays.jl/actions/workflows/CI.yml?query=branch%3Amaster)
+[![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://marcom.github.io/AbstractMetaArrays.jl/stable/)
+[![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://marcom.github.io/AbstractMetaArrays.jl/dev/)
+[![Build Status](https://github.com/marcom/AbstractMetaArrays.jl/actions/workflows/CI.yml/badge.svg?branch=master)](https://github.com/marcom/AbstractMetaArrays.jl/actions/workflows/CI.yml?query=branch%3Amaster)
 [![Aqua](https://raw.githubusercontent.com/JuliaTesting/Aqua.jl/master/badge.svg)](https://github.com/JuliaTesting/Aqua.jl)
 
 
@@ -47,4 +47,4 @@ meta_rays = SimpleMetaArray(rays,
     Dict("units"=>(km,:unit),"normalized"=>(false,:Bool)))
 ```
 
-For more details, check out the [documentation](https://marcom.github.io/AbstactMetaArrays.jl/stable/).
+For more details, check out the [documentation](https://marcom.github.io/AbstractMetaArrays.jl/stable/).
