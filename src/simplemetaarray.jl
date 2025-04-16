@@ -32,7 +32,7 @@ end
 Construct a `SimpleMetaArray` with the given data, metadata and colmetadata.
 
 # Example
-```jldoctest
+```jldocs
 julia> using StaticArrays
 julia> s=SimpleMetaArray(SVector{3}(1,1,1), Dict("description" => ("test array", :entry)),
               Dict("unit" => ("m", :default)))
