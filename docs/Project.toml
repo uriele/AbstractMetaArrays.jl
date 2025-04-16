@@ -1,3 +1,4 @@
 [deps]
 AbstractMetaArrays = "f931004c-b40c-4d45-87f0-83a9870f361d"
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"

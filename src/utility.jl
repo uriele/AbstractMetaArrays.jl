@@ -24,6 +24,7 @@ is in the value in not in the form of a Tuple{Any,Symbol} it will be converted t
 
   # Example
   ```jldoctest
+  julia> using StaticArrays
   julia> create_metaarray(SimpleMetaArray, SVector{3}(1,1,1), Dict("description" => ("test array", :entry)),
           Dict("unit" => ("m", :default)))
   (Dict("description" => ("test array", :entry)),
