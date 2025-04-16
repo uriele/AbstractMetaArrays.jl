@@ -27,7 +27,7 @@
     [`create_metaarray`](@ref) for a helper function to create the metadata and colmetadata for the meta array.
     [`ColMetadataTrait`](@ref) for the trait that defines if the meta array supports column metadata or not.
     [`ColMetadataStyle`](@ref) for the trait that defines the access to the column metadata.
-    [`MetadataTrait`](@ref) for the trait that defines if the meta array supports metadata or not.
+    [`MetadataStyle`](@ref) for the trait that defines the access to the metadata.
 
 """
 abstract type AbstractMetaArray{T, N, A <: AbstractArray{T, N}} <: AbstractArray{T, N} end

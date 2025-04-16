@@ -17,7 +17,6 @@ Concrete implementations (such as [`SimpleMetaArray`](@ref)) inherit from `Abstr
 - [`AbstractMetaVector`](@ref), [`AbstractMetaMatrix`](@ref): Aliases for 1D and 2D meta arrays.
 - [`SimpleMetaArray`](@ref): A concrete implementation with full metadata and column metadata support.
 - [`MetaType`](@ref): Alias for the metadata dictionary type.
-- [`DictOrNothing`](@ref): Alias for `Union{Dict, Nothing}` for optional metadata arguments.
 
 # Traits
 
