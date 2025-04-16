@@ -1,4 +1,5 @@
 using AbstractMetaArrays
+using StaticArrays
 using Documenter
 
 DocMeta.setdocmeta!(
